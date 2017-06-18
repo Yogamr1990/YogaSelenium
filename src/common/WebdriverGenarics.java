@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -24,6 +23,7 @@ public class WebdriverGenarics
 	/*
 	 * Created By bala
 	 * */
+	
 	public WebDriver launchBrowser(WebDriver driver , String BrowserName, String URL)
 	{
 		switch (BrowserName.toUpperCase())
@@ -343,7 +343,7 @@ public class WebdriverGenarics
 		driver.manage().window().setSize(new Dimension(width, height));
 	}
 	
-	
+
 	/*entertext = 8methods
 	 * click =8 method
 	 * framebyIndex
