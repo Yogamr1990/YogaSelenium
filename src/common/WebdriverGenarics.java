@@ -8,13 +8,16 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 
@@ -26,6 +29,7 @@ public class WebdriverGenarics
 	
 	public WebDriver launchBrowser(WebDriver driver , String BrowserName, String URL)
 	{
+		DesiredCapabilities cap =null;
 		switch (BrowserName.toUpperCase())
 		{
 		case "IE":
@@ -34,8 +38,14 @@ public class WebdriverGenarics
 			break;
 
 		case "CHROME":
+			
 			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/driver/chromedriver.exe");
+//			cap.setPlatform(Platform.ANY);
+//			cap= DesiredCapabilities.chrome();
+//			driver= new ChromeDriver(cap);
 			driver= new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addExtensions(new File("/path/to/extension.crx"));
 			break;
 
 		case "FIREFOX":

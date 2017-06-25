@@ -1,6 +1,9 @@
 package testRunner;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -15,6 +18,7 @@ public class BaseRunner
 	public PropertiesFile PropObj= null;
 	public SoftAssert sa = null;
 	public String CurrentURL =null;
+	public HashMap< String, Object> hmap = new HashMap<>();
 
 	@BeforeSuite
 	public void beforeSuite()
@@ -35,7 +39,7 @@ public class BaseRunner
 		webdriverGenarics.enterText(driver, "Id", "pass", PropObj.getProp("App.password"));
 		//submit
 		webdriverGenarics.click(driver, "xpath", "//input[@value='Log In']");
-		
+		 
 		CurrentURL=webdriverGenarics.getCurrentURL(driver);
 	}
 	
@@ -48,6 +52,7 @@ public class BaseRunner
 	@AfterMethod
 	public void afterMethod()
 	{
+		hmap.clear();
 		webdriverGenarics.navigateTo(driver, CurrentURL);
 	}
 	

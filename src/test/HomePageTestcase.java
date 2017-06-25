@@ -22,12 +22,13 @@ public class HomePageTestcase extends BaseRunner
 	public void verifyHomePageTitle()
 	{
 		ExcelConfig.setWorkBookAndSheet("HomePage", "Testcase_001");	
+		for(int i=0; i<ExcelConfig.getRowCount(); i++)
+		{
+		hmap.put("userName", ExcelConfig.readStringData(i, 0));
+		hmap.put("ExpectedTitle", ExcelConfig.readStringData(i, 1));
 		
-		String userName= ExcelConfig.readStringData(1, 0);
-		String ExpectedTitle= ExcelConfig.readStringData(1, 1);
-		
-		PrintUtils.logMessage("Username is::"+ userName);
-		PrintUtils.logMessage("ExpectedTitle is::"+ ExpectedTitle);
+		PrintUtils.logMessage("Username is::"+ hmap.get("userName"));
+		PrintUtils.logMessage("ExpectedTitle is::"+  hmap.get("ExpectedTitle"));
 		
 		PrintUtils.logMessage("To verify Home page");
 		//click Profile Link
@@ -47,11 +48,13 @@ public class HomePageTestcase extends BaseRunner
 //		
 //		// End testcase
 //		sa.assertAll();
+		}
 	}
 	
 	@Test(enabled=false, priority=2)
 	public void verifyLogoutFunctionality()
 	{
+		
 		PrintUtils.logMessage("To verify Logout functionality");
 		
 		webdriverGenarics.click(driver, "id",prop.getProp("LogoutNavigationLink"));
